@@ -10,6 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="/fonts/roboto.css">
 	@show
 	<!-- custom.css is loaded by the loader.js to make sure it's loaded after the module css files. -->
+    
+    @section('javascript')
+	<script src="/js/jquery-3.0.0.min.js"></script>
+	@show
+	
 </head>
 <body>
 	<div class="region fullscreen below">
@@ -64,6 +69,9 @@
 		<div class="region bottom center">
 		  <div class="container">
 		  @yield('bottom-center')
+		  @if(isset($exception))
+		  {{ $exception }}
+		  @endif
 		  </div>
 		</div>
 		<div class="region bottom right">
@@ -77,7 +85,5 @@
 	   @yield('fullscreen-above')
 	   </div>
 	</div>
-	@section('javascript')
-	@show
 </body>
 </html>
