@@ -91,6 +91,10 @@ body {
   text-align: left;
 }
 
+.align-center {
+  text-align: center;
+}
+
 header {
   text-transform: uppercase;
   font-size: 15px;
