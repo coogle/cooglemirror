@@ -2,5 +2,6 @@
 
 return [
     'placement' => 'bottom_center',
-    'format' => 'ddd MMM Do<br/> h:mm A'
+    'time_format' => 'h:mm A',
+    'date_format' => 'ddd MMM Do'
 ];

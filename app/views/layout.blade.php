@@ -5,6 +5,8 @@
 	<meta name="google" content="notranslate" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	<link href="/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+	
     @section('stylesheets')
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/fonts/roboto.css">
