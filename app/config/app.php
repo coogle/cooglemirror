@@ -124,6 +124,7 @@ return array(
 	    'Cooglemirror\Drivetime\DrivetimeServiceProvider',
 	    'Cooglemirror\Clock\ClockServiceProvider',
 	    'Cooglemirror\Weather\WeatherServiceProvider',
+	    'Cooglemirror\Headlines\HeadlinesServiceProvider'
 	),
 
 	/*
