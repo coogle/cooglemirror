@@ -39,7 +39,6 @@ class Widget
         }
         
         $view->with('driveData', $driveData);
-        
     }
     
 }

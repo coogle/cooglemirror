@@ -10,6 +10,7 @@
     @section('stylesheets')
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/fonts/roboto.css">
+	<link rel="stylesheet" type="text/css" href="/css/animate.css">
 	<link href="/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 	@show
 	<!-- custom.css is loaded by the loader.js to make sure it's loaded after the module css files. -->
