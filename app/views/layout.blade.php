@@ -13,62 +13,69 @@
     
     @section('javascript')
 	<script src="/js/jquery-3.0.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			setTimeout(function() {
+				location.reload();
+			}, 15 * 60000);
+		});
+	</script>
 	@show
 	
 </head>
 <body>
 	<div class="region fullscreen below">
 	   <div class="container">
-	   @yield('fullscreen-below')
+	   {{ $fullscreen_below }}
 	   </div>
 	</div>
 	<div class="region top bar">
 		<div class="container">
-		  @yield('top-bar')
+		  {{ $top_bar }}
 		</div>
 		<div class="region top left">
 		  <div class="container">
-		  @yield('top-left')
+		  {{ $top_left }}
 		  </div>
 		</div>
 		<div class="region top center">
 		  <div class="container">
-		  @yield('top-center')
+		  {{ $top_center }}
 		  </div>
 		</div>
 		<div class="region top right">
 		  <div class="container">
-		  @yield('top-right')
+		  {{ $top_right }}
 		  </div>
 	    </div>
 	</div>
 	<div class="region upper third">
 	   <div class="container">
-	   @yield('upper-third')
+	   {{ $upper_third }}
 	   </div>
 	</div>
 	<div class="region middle center">
 	   <div class="container">
-	   @yield('middle-center')
+	   {{ $middle_center }}
 	   </div>
 	</div>
 	<div class="region lower third">
 	   <div class="container">
-	   @yield('lower-third')
+	   {{ $lower_third }}
 	   </div>
 	</div>
 	<div class="region bottom bar">
 		<div class="container">
-		@yield('bottom-bar')
+		{{ $bottom_bar }}
 		</div>
 		<div class="region bottom left">
 		  <div class="container">
-		  @yield('bottom-left')
+		  {{ $bottom_left }}
 		  </div>
 		</div>
 		<div class="region bottom center">
 		  <div class="container">
-		  @yield('bottom-center')
+		  {{ $bottom_center }}
 		  @if(isset($exception))
 		  {{ $exception }}
 		  @endif
@@ -76,13 +83,13 @@
 		</div>
 		<div class="region bottom right">
 		  <div class="container">
-		  @yield('bottom-right')
+		  {{ $bottom_right }}
 		  </div>
 	    </div>
 	</div>
 	<div class="region fullscreen above">
 	   <div class="container">
-	   @yield('fullscreen-above')
+	   {{ $fullscreen_above }}
 	   </div>
 	</div>
 </body>

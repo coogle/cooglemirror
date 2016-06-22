@@ -121,8 +121,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-        'Cooglemirror\Weather\WeatherServiceProvider',
-	    'Cooglemirror\Clock\ClockServiceProvider'
+	    'Cooglemirror\Drivetime\DrivetimeServiceProvider',
+	    'Cooglemirror\Clock\ClockServiceProvider',
+	    'Cooglemirror\Weather\WeatherServiceProvider',
 	),
 
 	/*
