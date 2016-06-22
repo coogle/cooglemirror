@@ -11,15 +11,21 @@ class Widget
         try {
             $map = new OpenWeatherMap(\Config::get('cooglemirror-weather::widget.openweathermap.api_key'));
             
+            $city = \Config::get('cooglemirror-weather::widget.city_id', \Config::get('cooglemirror-weather::widget.city', null));
+            
+            if(is_null($city)) {
+                return;
+            }
+            
             $weatherForecast = $map->getWeatherForecast(
-                \Config::get('cooglemirror-weather::widget.city'),
+                $city,
                 \Config::get('cooglemirror-weather::widget.openweathermap.units'),
                 \Config::get('cooglemirror-weather::widget.openweathermap.language'),
                 0
             );
             
             $currentWeather = $map->getWeather(
-                \Config::get('cooglemirror-weather::widget.city'),
+                $city,
                 \Config::get('cooglemirror-weather::widget.openweathermap.units'),
                 \Config::get('cooglemirror-weather::widget.openweathermap.language')
             );
