@@ -1,4 +1,4 @@
-<div class="large">Drive Times</div>
+<div>Drive Times</div>
 <table>
     <tr>
         <td colspan="2" class="small dim">(Last Update: {{ $driveData['updated'] }})</td>
