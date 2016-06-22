@@ -3,6 +3,7 @@
 namespace Cooglemirror\Weather;
 
 use Cmfcmf\OpenWeatherMap;
+use Carbon\Carbon;
 class Widget
 {
     public function compose($view)
@@ -23,10 +24,17 @@ class Widget
                 \Config::get('cooglemirror-weather::widget.openweathermap.language')
             );
             
+            $sunRise = Carbon::createFromTimestamp($currentWeather->sun->rise->getTimestamp(), \Config::get('app.timezone'));
+            $sunSet = Carbon::createFromTimestamp($currentWeather->sun->set->getTimestamp(), \Config::get('app.timezone'));
+            
             $weatherData = [
+                'sun' => [
+                    'rise' => $sunRise->format('g:ia'),
+                    'set' => $sunSet->format('g:ia')
+                ],
                 'current' => [
                     'temp' => round($currentWeather->temperature->now->getValue(), 0) . "&deg;",
-                    'icon' => $this->convertIcon($currentWeather->weather->icon)
+                    'icon' => (date('m-d') == '04-25') ? 'wi-alien' : $this->convertIcon($currentWeather->weather->icon)
                 ],
                 'hourly' => []
             ];
@@ -80,13 +88,13 @@ class Widget
             case '50d':
                 return 'wi-fog';
             case '01n':
-                return 'wi-night-clear';
+                return 'wi-stars';
             case '02n':
                 return 'wi-night-cloudy';
             case '03n':
                 return 'wi-night-cloudy';
             case '04n':
-                return 'wi-night-cloudy';
+                return 'wi-night-alt-cloudy-windy';
             case '09n':
                 return 'wi-night-showers';
             case '10n':

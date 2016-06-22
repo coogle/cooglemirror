@@ -2,6 +2,10 @@
 <link href="/packages/cooglemirror/weather/css/weather-icons/css/weather-icons.css" rel="stylesheet"/>
 <table style="width: 300px">
     <tr>
+        <td colspan="2" class="align-left small"><span class="wi wi-sunrise"></span> {{ $weatherData['sun']['rise'] }}</td>
+        <td colspan="2" class="align-right small"><span class="wi wi-sunset"></span> {{ $weatherData['sun']['set'] }}</td>
+    </tr>
+    <tr>
         <td colspan="2" class="align-left bright max-temp xlarge">{{ $weatherData['current']['temp'] }}</td>
         <td colspan="2" class="align-right bright weather-icon xlarge"><span class="wi {{ $weatherData['current']['icon'] }}"></span></td>
     </tr>
@@ -12,4 +16,5 @@
         <td class="align-right min-temp">{{ $hourlyForecast['temp'] }}</td>
     </tr>
     @endforeach
+
 </table>
