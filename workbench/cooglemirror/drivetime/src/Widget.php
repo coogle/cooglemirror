@@ -15,7 +15,7 @@ class Widget
             'key' => \Config::get('cooglemirror-drivetime::widget.api_key'),
             'mode' => \Config::get('cooglemirror-drivetime::widget.distance_mode', 'driving'),
             'units' => \Config::get('cooglemirror-drivetime::widget.units', 'imperial'),
-            //'traffic_model' => \Config::Get('cooglemirror-drivetime::widget.traffic_model', 'best_guess')
+            'trafficModel' => \Config::Get('cooglemirror-drivetime::widget.traffic_model', 'best_guess')
         ];
         
         $params['destinations'] = implode('|', $params['destinations']);
