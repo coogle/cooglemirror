@@ -8,68 +8,63 @@ class Widget
 {
     public function compose($view)
     {
-        try {
-            $map = new OpenWeatherMap(\Config::get('cooglemirror-weather::widget.openweathermap.api_key'));
-            
-            $city = \Config::get('cooglemirror-weather::widget.city_id', \Config::get('cooglemirror-weather::widget.city', null));
-            
-            if(is_null($city)) {
-                return;
-            }
-            
-            $weatherForecast = $map->getWeatherForecast(
-                $city,
-                \Config::get('cooglemirror-weather::widget.openweathermap.units'),
-                \Config::get('cooglemirror-weather::widget.openweathermap.language'),
-                0
-            );
-            
-            $currentWeather = $map->getWeather(
-                $city,
-                \Config::get('cooglemirror-weather::widget.openweathermap.units'),
-                \Config::get('cooglemirror-weather::widget.openweathermap.language')
-            );
-            
-            $sunRise = Carbon::createFromTimestamp($currentWeather->sun->rise->getTimestamp(), \Config::get('app.timezone'));
-            $sunSet = Carbon::createFromTimestamp($currentWeather->sun->set->getTimestamp(), \Config::get('app.timezone'));
-            
-            $weatherData = [
-                'sun' => [
-                    'rise' => $sunRise->format('g:ia'),
-                    'set' => $sunSet->format('g:ia')
-                ],
-                'current' => [
-                    'temp' => round($currentWeather->temperature->now->getValue(), 0) . "&deg;",
-                    'icon' => (date('m-d') == '04-25') ? 'wi-alien' : $this->convertIcon($currentWeather->weather->icon)
-                ],
-                'hourly' => []
+        $map = new OpenWeatherMap(\Config::get('cooglemirror-weather::widget.openweathermap.api_key'));
+        
+        $city = \Config::get('cooglemirror-weather::widget.city_id', \Config::get('cooglemirror-weather::widget.city', null));
+        
+        if(is_null($city)) {
+            return;
+        }
+        
+        $weatherForecast = $map->getWeatherForecast(
+            $city,
+            \Config::get('cooglemirror-weather::widget.openweathermap.units'),
+            \Config::get('cooglemirror-weather::widget.openweathermap.language'),
+            0
+        );
+        
+        $currentWeather = $map->getWeather(
+            $city,
+            \Config::get('cooglemirror-weather::widget.openweathermap.units'),
+            \Config::get('cooglemirror-weather::widget.openweathermap.language')
+        );
+        
+        $sunRise = Carbon::createFromTimestamp($currentWeather->sun->rise->getTimestamp(), \Config::get('app.timezone'));
+        $sunSet = Carbon::createFromTimestamp($currentWeather->sun->set->getTimestamp(), \Config::get('app.timezone'));
+        
+        $weatherData = [
+            'sun' => [
+                'rise' => $sunRise->format('g:ia'),
+                'set' => $sunSet->format('g:ia')
+            ],
+            'current' => [
+                'temp' => round($currentWeather->temperature->now->getValue(), 0) . "&deg;",
+                'icon' => (date('m-d') == '04-25') ? 'wi-alien' : $this->convertIcon($currentWeather->weather->icon)
+            ],
+            'hourly' => []
+        ];
+        
+        $hourCount = \Config::get('cooglemirror-weather::widget.hours', 4);
+        
+        $i = 0;
+        $opacity = 1;
+        foreach($weatherForecast as $forecast) {
+            $weatherData['hourly'][] = [
+                'hour' => $forecast->time->from->format('g A'),
+                'temp' => round($forecast->temperature->getValue(), 0) . "&deg;",
+                'icon' => $this->convertIcon($forecast->weather->icon),
+                'opacity' => $opacity
             ];
             
-            $hourCount = \Config::get('cooglemirror-weather::widget.hours', 4);
+            $opacity -= (1 / ($hourCount + 1));
             
-            $i = 0;
-            $opacity = 1;
-            foreach($weatherForecast as $forecast) {
-                $weatherData['hourly'][] = [
-                    'hour' => $forecast->time->from->format('g A'),
-                    'temp' => round($forecast->temperature->getValue(), 0) . "&deg;",
-                    'icon' => $this->convertIcon($forecast->weather->icon),
-                    'opacity' => $opacity
-                ];
-                
-                $opacity -= (1 / ($hourCount + 1));
-                
-                if(++$i >= $hourCount) {
-                    break;
-                }
+            if(++$i >= $hourCount) {
+                break;
             }
-            
-            $view->with('weatherData', $weatherData);
-            
-        } catch(\Exception $e) {
-            $view->with('exception', $e->getMessage());
-            dd($e->getMessage());
         }
+        
+        $view->with('weatherData', $weatherData);
+            
     }
     
     protected function convertIcon($icon)
