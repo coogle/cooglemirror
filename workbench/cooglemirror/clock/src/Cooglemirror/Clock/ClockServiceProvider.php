@@ -20,10 +20,11 @@ class ClockServiceProvider extends ServiceProvider {
 	{
 		$this->package('cooglemirror/clock', 'cooglemirror-clock');
 		
-		$view = \View::make('cooglemirror-clock::widget');
+		\Event::listen('cooglemirror.render', function($layoutView) {
+		    $view = \View::make('cooglemirror-clock::widget')->render();
+		    $layoutView->with(\Config::get('cooglemirror-clock::widget.placement'), $view);
+		});
 		
-		\View::inject(\Config::get('cooglemirror-clock::widget.placement'), $view);
-	    
 	}
 
 	/**

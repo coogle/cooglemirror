@@ -1,8 +1,8 @@
-<?php namespace Cooglemirror\Weather;
+<?php namespace Cooglemirror\Drivetime;
 
 use Illuminate\Support\ServiceProvider;
 
-class WeatherServiceProvider extends ServiceProvider {
+class DrivetimeServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,13 +18,17 @@ class WeatherServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('cooglemirror/weather', 'cooglemirror-weather');
+		$this->package('cooglemirror/drivetime', 'cooglemirror-drivetime');
 		
 		\Event::listen('cooglemirror.render', function($layoutView) {
-		    \View::composer('cooglemirror-weather::widget', 'Cooglemirror\Weather\Widget');
-		    $view = \View::make('cooglemirror-weather::widget')->render();
-		    $layoutView->with(\Config::get('cooglemirror-weather::widget.placement'), $view);
+		    
+		    \View::composer('cooglemirror-drivetime::widget', 'Cooglemirror\Drivetime\Widget');
+		    
+		    $view = \View::make('cooglemirror-drivetime::widget')->render();
+		    
+		    $layoutView->with(\Config::get('cooglemirror-drivetime::widget.placement'), $view);
 		});
+
 	}
 
 	/**

@@ -17,7 +17,23 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		return View::make('default.index');
+		$layoutView =  View::make('default.index', [
+		    'fullscreen_above' => '',
+		    'fullscreen_below' => '',
+		    'top_bar' => '',
+		    'top_center' => '',
+		    'top_right' => '',
+		    'upper_third' => '',
+		    'middle_center' => '',
+		    'lower_third' => '',
+		    'bottom_bar' => '',
+		    'bottom_left' => '',
+		    'bottom_right' => ''
+		]);
+		
+		\Event::fire('cooglemirror.render', [$layoutView]);
+		
+		return $layoutView;
 	}
 
 }
