@@ -13,8 +13,13 @@
     <tr style="opacity:  {{ $hourlyForecast['opacity'] }};">
         <td class="day">{{ $hourlyForecast['hour'] }}</td>
         <td class="weather-icon align-center"><span class="wi {{ $hourlyForecast['icon'] }}"></span></td>
-        <td class="align-right min-temp">{{ $hourlyForecast['temp'] }}</td>
+        <td  colspan="2" class="align-right min-temp">{{ $hourlyForecast['temp'] }}</td>
     </tr>
     @endforeach
-
+    
+    @if(isset($error))
+    <tr>
+        <td class="small dim align-left" colspan="4">{{ $error }}</td>
+    </tr>
+    @endif
 </table>

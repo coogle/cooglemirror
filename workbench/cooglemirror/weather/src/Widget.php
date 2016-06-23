@@ -15,51 +15,88 @@ class Widget
         if(is_null($city)) {
             return;
         }
+
+        $weatherForecast = null;
+        $currentWeather = null;
         
-        $weatherForecast = $map->getWeatherForecast(
-            $city,
-            \Config::get('cooglemirror-weather::widget.openweathermap.units'),
-            \Config::get('cooglemirror-weather::widget.openweathermap.language'),
-            0
-        );
+        try {
+            $weatherForecast = $map->getWeatherForecast(
+                $city,
+                \Config::get('cooglemirror-weather::widget.openweathermap.units'),
+                \Config::get('cooglemirror-weather::widget.openweathermap.language'),
+                0
+            );
+            
+            $currentWeather = $map->getWeather(
+                $city,
+                \Config::get('cooglemirror-weather::widget.openweathermap.units'),
+                \Config::get('cooglemirror-weather::widget.openweathermap.language')
+            );
+            
+            $expiresAt = Carbon::now()->addHour();
+            
+            \Cache::put('cooglemirror-weather::weatherForecast', $weatherForecast, $expiresAt);
+            \Cache::put('cooglemirror-weather::currentWeather', $currentWeather, $expiresAt);
+            
+        } catch(\Exception $e) {
+            $view->with('error', $e->getMessage());
+            
+            if(\Cache::has('cooglemirror-weather::weatherForecast')) {
+                $weatherForecast = \Cache::get('cooglemirror-weather::weatherForecast');
+            }
+            
+            if(\Cache::has('cooglemirror-weather::currentWeather')) {
+                $currentWeather = \Cache::get('cooglemirror-weather::currentWeather');
+            }
+        }
         
-        $currentWeather = $map->getWeather(
-            $city,
-            \Config::get('cooglemirror-weather::widget.openweathermap.units'),
-            \Config::get('cooglemirror-weather::widget.openweathermap.language')
-        );
-        
-        $sunRise = Carbon::createFromTimestamp($currentWeather->sun->rise->getTimestamp(), \Config::get('app.timezone'));
-        $sunSet = Carbon::createFromTimestamp($currentWeather->sun->set->getTimestamp(), \Config::get('app.timezone'));
-        
-        $weatherData = [
-            'sun' => [
-                'rise' => $sunRise->format('g:ia'),
-                'set' => $sunSet->format('g:ia')
-            ],
-            'current' => [
-                'temp' => round($currentWeather->temperature->now->getValue(), 0) . "&deg;",
-                'icon' => (date('m-d') == '04-25') ? 'wi-alien' : $this->convertIcon($currentWeather->weather->icon)
-            ],
-            'hourly' => []
-        ];
-        
-        $hourCount = \Config::get('cooglemirror-weather::widget.hours', 4);
-        
-        $i = 0;
-        $opacity = 1;
-        foreach($weatherForecast as $forecast) {
-            $weatherData['hourly'][] = [
-                'hour' => $forecast->time->from->format('g A'),
-                'temp' => round($forecast->temperature->getValue(), 0) . "&deg;",
-                'icon' => $this->convertIcon($forecast->weather->icon),
-                'opacity' => $opacity
+        if(is_null($currentWeather)) {
+            $weatherData = [
+                'sun' => [
+                    'rise' => '??:??',
+                    'set' => '??:??'
+                ],
+                'current' => [
+                    'temp' => '??&deg;',
+                    'icon' => 'wi-na'
+                ]
+            ]; 
+        } else {
+            $sunRise = Carbon::createFromTimestamp($currentWeather->sun->rise->getTimestamp(), \Config::get('app.timezone'));
+            $sunSet = Carbon::createFromTimestamp($currentWeather->sun->set->getTimestamp(), \Config::get('app.timezone'));
+            
+            $weatherData = [
+                'sun' => [
+                    'rise' => $sunRise->format('g:ia'),
+                    'set' => $sunSet->format('g:ia')
+                ],
+                'current' => [
+                    'temp' => round($currentWeather->temperature->now->getValue(), 0) . "&deg;",
+                    'icon' => (date('m-d') == '04-25') ? 'wi-alien' : $this->convertIcon($currentWeather->weather->icon)
+                ]
             ];
+        }
+        
+        $weatherData['hourly'] = [];
+        
+        if(!is_null($weatherForecast)) {
+            $hourCount = \Config::get('cooglemirror-weather::widget.hours', 4);
             
-            $opacity -= (1 / ($hourCount + 1));
-            
-            if(++$i >= $hourCount) {
-                break;
+            $i = 0;
+            $opacity = 1;
+            foreach($weatherForecast as $forecast) {
+                $weatherData['hourly'][] = [
+                    'hour' => $forecast->time->from->format('g A'),
+                    'temp' => round($forecast->temperature->getValue(), 0) . "&deg;",
+                    'icon' => $this->convertIcon($forecast->weather->icon),
+                    'opacity' => $opacity
+                ];
+                
+                $opacity -= (1 / ($hourCount + 1));
+                
+                if(++$i >= $hourCount) {
+                    break;
+                }
             }
         }
         

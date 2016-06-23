@@ -29,7 +29,7 @@ class HomeController extends BaseController {
     	    'lower_third' => '',
     	    'bottom_bar' => '',
     	    'bottom_left' => '',
-    	    'bottom_center' => 'News stuffs',
+    	    'bottom_center' => '',
     	    'bottom_right' => ''
 	    ];
 	    
