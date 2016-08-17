@@ -14,6 +14,12 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
+    
+    public function voice()
+    {
+        zray_disable();
+        return \View::make('default.voicetest');
+    }
 
 	public function index()
 	{
