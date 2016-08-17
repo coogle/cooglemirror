@@ -3,8 +3,16 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/coogle/PHPoAuthLib"
+        }
+    ],
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"lusitanian/oauth": "dev-master",
+		"guzzlehttp/guzzle": "^6.2"
 	},
 	"autoload": {
 		"classmap": [
@@ -14,7 +22,10 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+		"psr-0": {
+         "Cooglemirror": "app/Cooglemirror"
+    	}
 	},
 	"scripts": {
 		"post-install-cmd": [

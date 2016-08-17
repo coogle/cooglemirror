@@ -37,9 +37,12 @@ class Widget
             
             \Cache::put('cooglemirror-weather::weatherForecast', $weatherForecast, $expiresAt);
             \Cache::put('cooglemirror-weather::currentWeather', $currentWeather, $expiresAt);
+            \Cache::put('cooglemirror-weather::updateTime', Carbon::now(\Config::get('app.timezone'))->format('g:ia'), $expiresAt);
             
         } catch(\Exception $e) {
-            $view->with('error', $e->getMessage());
+            if(\Cache::has('cooglemirror-weather::updateTime')) {
+                $view->with('messsage', 'Updated last: ' . \Cache::get('cooglemirror-weather::updateTime'));
+            }
             
             if(\Cache::has('cooglemirror-weather::weatherForecast')) {
                 $weatherForecast = \Cache::get('cooglemirror-weather::weatherForecast');

@@ -1,31 +1,9 @@
 <?php
 
-return array(
-
-	/*
-	|--------------------------------------------------------------------------
-	| Third Party Services
-	|--------------------------------------------------------------------------
-	|
-	| This file is for storing the credentials for third party services such
-	| as Stripe, Mailgun, Mandrill, and others. This file provides a sane
-	| default location for this type of information, allowing packages
-	| to have a conventional place to find your various credentials.
-	|
-	*/
-
-	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
-	),
-
-	'mandrill' => array(
-		'secret' => '',
-	),
-
-	'stripe' => array(
-		'model'  => 'User',
-		'secret' => '',
-	),
-
-);
+return [
+    'amazon' => [
+        'client_id'     => 'amzn1.application-oa2-client.0db669d4b46a4cdfa96ac3e49270d38c',
+        'client_secret' => '4b907faa10408e17c3ddff45bca1e0a1c32e72b54d180b0b17ef076b30b28d51',
+        'scope'         => ['alexa:all'],
+    ]
+];
