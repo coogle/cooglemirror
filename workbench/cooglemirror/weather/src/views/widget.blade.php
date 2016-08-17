@@ -17,6 +17,12 @@
     </tr>
     @endforeach
     
+    @if(isset($message))
+    <tr>
+        <td class="small dim align-left" colspan="4">{{ $message }}</td>
+    </tr>
+    @endif
+    
     @if(isset($error))
     <tr>
         <td class="small dim align-left" colspan="4">{{ $error }}</td>

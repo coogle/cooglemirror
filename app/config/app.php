@@ -121,10 +121,11 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-	    'Cooglemirror\Drivetime\DrivetimeServiceProvider',
+	    //'Cooglemirror\Drivetime\DrivetimeServiceProvider',
 	    'Cooglemirror\Clock\ClockServiceProvider',
 	    'Cooglemirror\Weather\WeatherServiceProvider',
-	    'Cooglemirror\Headlines\HeadlinesServiceProvider'
+	    'Cooglemirror\Headlines\HeadlinesServiceProvider',
+	    'Cooglemirror\Smappee\SmappeeServiceProvider'
 	),
 
 	/*
