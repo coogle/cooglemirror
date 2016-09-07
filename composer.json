@@ -12,7 +12,12 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"lusitanian/oauth": "dev-master",
-		"guzzlehttp/guzzle": "^6.2"
+		"guzzlehttp/guzzle": "^6.2",
+		"cooglemirror/drivetime": "dev-master",
+		"cooglemirror/clock" : "dev-master",
+		"cooglemirror/headlines" : "dev-master",
+		"cooglemirror/smappee" : "dev-master",
+		"cooglemirror/weather" : "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -43,5 +48,5 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "dev"
 }
