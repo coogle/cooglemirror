@@ -1,4 +1,5 @@
 VagrantConfig.json
+packages
 .vagrant
 .buildpath
 .project
