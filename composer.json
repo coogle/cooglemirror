@@ -18,6 +18,7 @@
 		"cooglemirror/headlines" : "dev-master",
 		"cooglemirror/smappee" : "dev-master",
 		"cooglemirror/weather" : "dev-master"
+		"cooglemirror/dinner" : "dev-master"
 	},
 	"autoload": {
 		"classmap": [

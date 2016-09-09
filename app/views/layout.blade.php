@@ -42,6 +42,9 @@
 		  <div class="container">
 		  {{ $top_left }}
 		  </div>
+		  <div class="container">
+		  {{ $left_middle }}
+		  </div>
 		</div>
 		<div class="region top center">
 		  <div class="container">
@@ -51,6 +54,9 @@
 		<div class="region top right">
 		  <div class="container">
 		  {{ $top_right }}
+		  </div>
+		  <div class="container">
+		  {{ $right_middle }}
 		  </div>
 	    </div>
 	</div>
