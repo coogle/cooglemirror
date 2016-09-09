@@ -30,6 +30,8 @@ class HomeController extends BaseController {
     	    'top_left' => '',
     	    'top_center' => '',
     	    'top_right' => '',
+	        'right_middle' => '',
+	        'left_middle' => '',
     	    'upper_third' => '',
     	    'middle_center' => '',
     	    'lower_third' => '',
