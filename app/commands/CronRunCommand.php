@@ -89,10 +89,6 @@ class CronRunCommand extends Command {
 	 */
 	public function fire()
 	{
-		/**
-		 * EXAMPLES
-		 */
-
 	    \Event::fire(Events::PROCESS_CRON, [$this]);
 	    
 		$this->finish();
