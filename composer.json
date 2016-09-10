@@ -27,11 +27,9 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
-		],
-		"psr-0": {
-         "Cooglemirror": "app/Cooglemirror"
-    	}
+			"app/tests/TestCase.php",
+			"app/library"
+		]
 	},
 	"scripts": {
 		"post-install-cmd": [
