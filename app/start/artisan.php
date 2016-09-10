@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\Console\Command\Command;
 /*
 |--------------------------------------------------------------------------
 | Register The Artisan Commands
@@ -11,3 +12,4 @@
 |
 */
 
+\Artisan::add(new CronRunCommand());
