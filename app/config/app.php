@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+	    'Cooglemirror\Alexa\AlexaServiceProvider',
 	    //'Cooglemirror\Drivetime\DrivetimeServiceProvider',
 	    'Cooglemirror\Clock\ClockServiceProvider',
 	    'Cooglemirror\Weather\WeatherServiceProvider',

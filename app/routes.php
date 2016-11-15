@@ -1,5 +1,6 @@
 <?php
 
+use Alexa\Request\IntentRequest;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -22,11 +23,16 @@ Route::group([
     
 });
 
-Route::group([], function() {
-   
-    Route::any('/ask', [
-        'as' => 'ask',
-        'uses' => 'Alexa\ASKController@processIntent'
-    ]);
+Route::group(['before' => 'alexa-ask', 'prefix' => 'ask'], function() {
+    
+    $intent = \App::make('Alexa\Request\IntentRequest');
+    
+    if($intent instanceof IntentRequest) {
+        $controllerName = '\Alexa\Intents\\' . $intent->intentName . 'Controller@run';
+        
+        Route::any(null, [
+            'uses' => $controllerName
+        ]);
+    }
     
 });

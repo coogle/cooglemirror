@@ -1,5 +1,6 @@
 <?php
 
+use Alexa\Request\IntentRequest;
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
@@ -43,6 +44,22 @@ Route::filter('localhost', function()
     }
     
     return "Go away";
+});
+
+Route::filter("alexa-ask", function() 
+{
+    try {
+        $alexaRequest = @\Alexa\Request\Request::fromData(\Request::json()->all());
+    } catch(\Exception $e) {
+        
+    }
+    
+    if($alexaRequest instanceof IntentRequest) {
+        //$alexaRequest->validate();
+        return;
+    }
+    
+    return 'Go away';
 });
 
 Route::filter('auth', function()
