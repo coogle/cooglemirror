@@ -18,7 +18,8 @@
 		"cooglemirror/headlines" : "dev-master",
 		"cooglemirror/smappee" : "dev-master",
 		"cooglemirror/weather" : "dev-master",
-		"cooglemirror/dinner" : "dev-master"
+		"cooglemirror/dinner" : "dev-master",
+		"minicodemonkey/amazon-alexa-php": "^0.1.5"
 	},
 	"autoload": {
 		"classmap": [
