@@ -5,5 +5,9 @@ return [
         'client_id'     => '***REMOVED***',
         'client_secret' => '***REMOVED***',
         'scope'         => ['alexa:all'],
+    ],
+    'iCloud' => [
+        'username' => 'john@coggeshall.org',
+        'password' => '***REMOVED***'
     ]
 ];

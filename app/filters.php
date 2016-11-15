@@ -33,6 +33,18 @@ App::after(function($request, $response)
 |
 */
 
+Route::filter('localhost', function() 
+{
+    switch(Request::server('HTTP_HOST')) {
+        case 'mirror.coogle.local':
+        case gethostbyname('mirror.coogle.local'):
+        case 'localhost':
+            return;
+    }
+    
+    return "Go away";
+});
+
 Route::filter('auth', function()
 {
 	if (Auth::guest())
