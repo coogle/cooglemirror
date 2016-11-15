@@ -11,27 +11,22 @@
 |
 */
 
-Route::get('voice', [
-    'as' => 'voicetest',
-    'uses' => 'HomeController@voice'
-]);
+Route::group([
+    'before' => 'localhost'
+], function() {
 
-Route::get('/', [
-    'as' => 'home',
-    'uses' => 'HomeController@index'
-]);
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'HomeController@index'
+    ]);
+    
+});
 
-Route::get('/alexa/auth', [
-    'as' => 'alexa.auth',
-    'uses' => 'Alexa\OAuthController@authorize'
-]);
-
-Route::get('/alexa/authresponse', [
-    'as' => 'alexa.authresponse',
-    'uses' => 'Alexa\OAuthController@authResponse'
-]);
-
-Route::get('/alexa/trigger', [
-    'as' => 'alexa.trigger',
-    'uses' => 'Alexa\AlexaController@trigger'
-]);
+Route::group([], function() {
+   
+    Route::any('/ask', [
+        'as' => 'ask',
+        'uses' => 'Alexa\ASKController@processIntent'
+    ]);
+    
+});

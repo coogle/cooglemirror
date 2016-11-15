@@ -13,3 +13,4 @@ use Symfony\Component\Console\Command\Command;
 */
 
 \Artisan::add(new CronRunCommand());
+\Artisan::add(new DisplayiOSDevices());
