@@ -2,17 +2,17 @@
 
 return [
     'amazon' => [
-        'client_id'     => '***REMOVED***',
-        'client_secret' => '***REMOVED***',
+        'client_id'     => '',
+        'client_secret' => '',
         'scope'         => ['alexa:all'],
     ],
     'iCloud' => [
-        'username' => 'john@coggeshall.org',
-        'password' => '***REMOVED***'
+        'username' => '',
+        'password' => ''
     ],
     'twilio' => [
-        'account_sid' => '***REMOVED***',
-        'token' => '***REMOVED***',
-        'number' => '***REMOVED***'
+        'account_sid' => '',
+        'token' => '',
+        'number' => ''
     ]
 ];

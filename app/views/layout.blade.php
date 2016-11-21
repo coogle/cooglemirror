@@ -158,7 +158,6 @@
 		  @section('bottom_center')
 		  {{ $bottom_center }}
 		  @show
-		  
 		  @if(isset($exception))
 		  {{ $exception }}
 		  @endif
