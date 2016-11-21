@@ -21,6 +21,11 @@ Route::group([
         'uses' => 'HomeController@index'
     ]);
     
+    Route::get('/recipe/view', [
+        'as' => 'recipe.view',
+        'uses' => 'RecipeController@view'
+    ]);
+    
 });
 
 Route::group(['before' => 'alexa-ask', 'prefix' => 'ask'], function() {
@@ -35,4 +40,19 @@ Route::group(['before' => 'alexa-ask', 'prefix' => 'ask'], function() {
         ]);
     }
     
+});
+
+
+
+Route::group(['before' => 'auth.twilio'], function() {
+    
+    Route::any('/twilio/voice', [
+        'as' => 'twilio.voice',
+        'uses' => 'Twilio\CallbackController@voice'
+    ]);
+
+    Route::any('/twilio/sms', [
+        'as' => 'twilio.sms',
+        'uses' => 'Twilio\CallbackController@sms'
+    ]);
 });
