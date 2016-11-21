@@ -6,12 +6,11 @@
 	"repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/coogle/PHPoAuthLib"
+            "url": "https://github.com/coogle/RecipeParser"
         }
     ],
 	"require": {
 		"laravel/framework": "4.2.*",
-		"lusitanian/oauth": "dev-master",
 		"guzzlehttp/guzzle": "^6.2",
 		"cooglemirror/drivetime": "dev-master",
 		"cooglemirror/clock" : "dev-master",
@@ -19,7 +18,9 @@
 		"cooglemirror/smappee" : "dev-master",
 		"cooglemirror/weather" : "dev-master",
 		"cooglemirror/dinner" : "dev-master",
-		"minicodemonkey/amazon-alexa-php": "^0.1.5"
+		"minicodemonkey/amazon-alexa-php": "^0.1.5",
+		"coogle/recipe-parser" : "dev-master",
+		"aloha/twilio": "^3.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -29,7 +30,8 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php",
-			"app/library"
+			"app/library",
+			"app/events"
 		]
 	},
 	"scripts": {

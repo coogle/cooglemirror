@@ -1,16 +1,8 @@
-<?php
+<?php 
 
 use Symfony\Component\Console\Command\Command;
-/*
-|--------------------------------------------------------------------------
-| Register The Artisan Commands
-|--------------------------------------------------------------------------
-|
-| Each available Artisan command must be registered with the console so
-| that it is available to be called. We'll register every command so
-| the console gets access to each of the command object instances.
-|
-*/
 
-\Artisan::add(new CronRunCommand());
-\Artisan::add(new DisplayiOSDevices());
+Artisan::add(new CronRunCommand());
+Artisan::add(new DisplayiOSDevices());
+Artisan::add(new ShowUrlCommand());
+Artisan::add(new ParseRecipeCommand());
