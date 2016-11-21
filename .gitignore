@@ -1,5 +1,6 @@
 VagrantConfig.json
 packages
+app/database/production.sqlite
 .vagrant
 .buildpath
 .project
