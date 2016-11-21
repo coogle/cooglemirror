@@ -56,3 +56,9 @@ Route::group(['before' => 'auth.twilio'], function() {
         'uses' => 'Twilio\CallbackController@sms'
     ]);
 });
+
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'HomeController@index'
+]);
+
