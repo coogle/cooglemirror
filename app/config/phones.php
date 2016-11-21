@@ -2,6 +2,6 @@
 
 return [
 	'john' => [
-		'device_id' => '***REMOVED***'
+		'device_id' => ''
 	]
 ];

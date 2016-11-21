@@ -46,7 +46,7 @@ class DisplayiOSDevices extends Command {
 		    $this->info("{$device->name} : {$device->ID}");
 		}
 		
-		$fmi->playSound("***REMOVED***", "Testing 1 2 3");
+		$fmi->playSound("bhve8lD8GHqSEeag1lr6uM6TiNdEk4CBJYzEjJbc4RfAgHzZibR2oeHYVNSUzmWV", "Testing 1 2 3");
 	}
 
 	/**
