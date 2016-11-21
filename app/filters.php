@@ -78,6 +78,24 @@ Route::filter('auth', function()
 });
 
 
+Route::filter('auth.twilio', function() 
+{
+    $twilioValidator = new Services_Twilio_RequestValidator(\Config::get('services.twilio.token'));
+    
+    // juggling the URL behind the ngrok proxy
+    $url = str_replace("http://", "https://", str_replace("ngrok.tunnel", "coogle-mirror.ngrok.io", \Request::url()));
+    
+    $signature = isset($_SERVER['HTTP_X_TWILIO_SIGNATURE']) ? $_SERVER['HTTP_X_TWILIO_SIGNATURE'] : '';
+    
+    $isTwilio = $twilioValidator->validate($signature, $url, $_POST);
+    
+    if(!$isTwilio) {
+        \App::abort(404);
+    }
+    
+    return;
+});
+
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

@@ -9,5 +9,10 @@ return [
     'iCloud' => [
         'username' => 'john@coggeshall.org',
         'password' => '***REMOVED***'
+    ],
+    'twilio' => [
+        'account_sid' => '***REMOVED***',
+        'token' => '***REMOVED***',
+        'number' => '***REMOVED***'
     ]
 ];

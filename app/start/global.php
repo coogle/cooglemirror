@@ -1,5 +1,7 @@
 <?php
 
+require_once app_path() .'/listeners.php';
+
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
