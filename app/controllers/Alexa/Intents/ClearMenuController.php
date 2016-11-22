@@ -23,6 +23,8 @@ class ClearMenuController extends AbstractController
         $response->respond("I have cleared the dinner menu");
         $response->endSession();
         
+        \Event::fire(\SwitchUrlHandler::EVENT, '\\');
+        
         return \Response::json($response->render());
     }
 }

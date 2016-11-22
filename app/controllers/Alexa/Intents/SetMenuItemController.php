@@ -112,6 +112,8 @@ class SetMenuItemController extends AbstractController
                 $day->menu = ucwords($menuItem);
                 $day->save();
                 
+                \Event::fire(\SwitchUrlHandler::EVENT, '\\');
+                
                 $response->respond("I've added '$menuItem' to the dinner menu for {$request->slots['DayOfWeek']}.");
                 
                 break;
@@ -122,6 +124,8 @@ class SetMenuItemController extends AbstractController
                 $day = DinnerMenu::findByDay($dayOfWeek);
                 $day->menu = '?????';
                 $day->save();
+                
+                \Event::fire(\SwitchUrlHandler::EVENT, '\\');
                 
                 $response->respond("I've cleared the dinner menu for {$request->slots['DayOfWeek']}.");
                 break;
